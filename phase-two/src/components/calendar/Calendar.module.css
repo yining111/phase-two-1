@@ -1,0 +1,108 @@
+/* 日历容器 */
+.calendar {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* 头部导航 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.monthTitle {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+/* 星期标题 */
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.weekDay {
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+  font-weight: 500;
+}
+
+/* 日期网格 */
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+/* 日期单元格 */
+.dayCell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  min-height: 40px;
+}
+
+.dayCell:hover {
+  background: #f0f5ff;
+}
+
+/* 非当前月份 */
+.otherMonth {
+  color: #ccc;
+  background: #fafafa;
+}
+
+/* 今天高亮 */
+.today {
+  background: #e6f7ff;
+  border: 1px solid #1890ff;
+}
+
+.today .dayNumber {
+  color: #1890ff;
+  font-weight: bold;
+}
+
+/* 选中状态 */
+.selected {
+  background: #667eea !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.selected .dayNumber {
+  color: white;
+}
+
+/* 圆点指示器 */
+.dots {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+  align-items: center;
+}
+
+.dot {
+  transform: scale(0.8);
+}
+
+.more {
+  font-size: 10px;
+  color: inherit;
+  opacity: 0.8;
+}
+
