@@ -24,10 +24,10 @@ export const InfoNotice: React.FC = () => {
               注意事项
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#666' }}>
-              <li style={{ marginBottom: '4px' }}>开放时间：8:00-22:00（日）</li>
-              <li style={{ marginBottom: '4px' }}>请爱护公物，保持环境卫生</li>
-              <li style={{ marginBottom: '4px' }}>活动结束后请关闭所有门窗</li>
-              <li>如有特殊需求请联系管理员</li>
+              <li style={{ marginBottom: '4px' , color: '#f29d43ff'}}>开放时间：8:00-22:00（日）</li>
+              <li style={{ marginBottom: '4px' , color: '#f29d43ff'}}>请爱护公物，保持环境卫生</li>
+              <li style={{ marginBottom: '4px' , color: '#f29d43ff'}}>不可对未来一小时内预约</li>
+              
             </ul>
           </div>
         </div>
