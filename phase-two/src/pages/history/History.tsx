@@ -44,7 +44,7 @@ const History: React.FC = () => {
   ];
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col mx-auto">
       <h2 className="text-xl font-bold mb-4">预约历史记录</h2>
       <div className="flex-1">
         <Table 

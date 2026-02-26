@@ -74,7 +74,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       </Header>
 
       {/* 主体布局 */}
-      <Layout style={{ marginTop: '64px', minHeight: 'calc(100vh - 64px)', display: 'flex' }}>
+      <Layout style={{ marginTop: '64px', minHeight: 'calc(100vh - 64px)', display: 'flex', width: '100%' }}>
         {/* 侧边栏 - 固定在左侧 */}
         <Sider 
           width={200}
@@ -101,9 +101,11 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         </Sider>
 
         {/* 主内容区 - 可滚动 */}
-        <Content style={{ marginLeft: isMobile ? 0 : 200, minHeight: 'calc(100vh - 64px)', padding: 0, overflow: 'auto' }}>
-          <div style={{ padding: '16px', width: '100%' }}>
-            {children}
+        <Content style={{ marginLeft: isMobile ? 0 : 200, minHeight: 'calc(100vh - 64px)', padding: 0, overflow: 'auto', flex: 1 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', width: '100%', padding: '24px' }}>
+            <div style={{ maxWidth: '1200px', width: '100%' }}>
+              {children}
+            </div>
           </div>
         </Content>
       </Layout>

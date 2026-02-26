@@ -28,7 +28,7 @@ useEffect(() => {
   }, [getDashboardStats]);
 
   return (
-    <Row gutter={[24,24]} style={{ marginBottom: 24, width:'100%',height:150 }}>
+    <Row gutter={[24,24]} style={{ marginBottom: 24, width:'100%',height:150 ,maxWidth:'1000px',margin:'0 auto'}}>
       {/* 本周预约数 */}
       <Col span={8}>
         <Card    style={{width:250,height:150}}>
