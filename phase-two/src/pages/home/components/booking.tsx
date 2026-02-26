@@ -43,7 +43,7 @@ export const BookingDetails: React.FC = () => {
   return (
     <div>
       {/* 日期标题 */}
-      <div style={{ marginBottom: 16 ,width:300,height:50}}>
+      <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Title level={5} style={{ margin: 0 }}>
           {formatDate(selectedDate)} {getWeekDay(selectedDate)}
         </Title>
@@ -53,17 +53,17 @@ export const BookingDetails: React.FC = () => {
       </div>
 
       {bookings.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '20px', color: '#999' ,width:400,height:50}}>
+        <div style={{ textAlign: 'center', padding: '20px', color: '#999' }}>
           今日无预约
         </div>
       ) : (
-        <div style={{ paddingLeft: '24px',width:400,height:50 }}>
+        <div style={{ paddingLeft: '24px' }}>
           {bookings.map((booking, index) => {
             const status = statusConfig[booking.status];
             const isLast = index === bookings.length - 1;
             
             return (
-              <div key={booking.id} style={{ position: 'relative', marginBottom: '24px' ,width:400,height:60}}>
+              <div key={booking.id} style={{ position: 'relative', marginBottom: '24px' }}>
                 {/* 时间轴点 */}
                 <div 
                   style={{
@@ -100,7 +100,7 @@ export const BookingDetails: React.FC = () => {
                   />
                 )}
                 
-                <div style={{ marginLeft: '8px' ,width:400,height:40}}>
+                <div style={{ marginLeft: '8px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px', flexWrap: 'wrap' }}>
                     <Tag color={status.tagColor} style={{ marginRight: '8px' }}>{status.text}</Tag>
                     <Text strong>{booking.theme}</Text>
@@ -109,7 +109,7 @@ export const BookingDetails: React.FC = () => {
                     </Text>
                   </div>
                   
-                  <div style={{ color: '#666', fontSize: '14px' ,width:400,height:40}}>
+                  <div style={{ color: '#666', fontSize: '14px' }}>
                     <div style={{ marginBottom: '2px' }}>
                       <UserOutlined style={{ marginRight: '6px', fontSize: '14px' }} />
                       {booking.applicant} ({booking.team})

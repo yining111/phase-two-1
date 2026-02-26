@@ -1,36 +1,7 @@
-.container {
-  animation: fadeIn 0.3s ease-in;
-}
 
-.card {
+
+ .card {
   border-radius: 12px;
-  height: 100%;
-}
+  width: 100%;
+} 
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/*信息卡 */
-:global(.info-card) {
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-  border-radius: 12px;
-}
-
-:global(.info-item) {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  background: white;
-  border-radius: 8px;
-}
-
-
-/* 下面三个 */
-:global(.dashboard-card) {
-  border-radius: 12px;
-  background: white;
-  transition: all 0.3s;
-}

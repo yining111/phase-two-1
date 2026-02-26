@@ -9,7 +9,7 @@ import styles from './index.module.css';
 //首页
 const HomePage: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <div className="w-full h-full flex flex-col">
       {/* 信息公示区 */}
       <InfoNotice />
       {/* 数据看板 */}

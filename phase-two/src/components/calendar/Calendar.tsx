@@ -22,7 +22,7 @@ export const MonthCalendar: React.FC = () => {
   const handleNextMonth = () => setCurrentMonth(currentMonth.add(1, 'month'));
 
   return (
-    <div className={styles.calendar} style={{width:400,height:360}}>
+    <div className={styles.calendar} >
       {/* 日历头部：月份导航 */}
       <div className={styles.header}>
         <Button.Group>

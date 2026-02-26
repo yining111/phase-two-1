@@ -28,10 +28,10 @@ useEffect(() => {
   }, [getDashboardStats]);
 
   return (
-    <Row gutter={[16, 16]} style={{ marginBottom: 24 ,width:1000,height:150 }}>
+    <Row gutter={[24,24]} style={{ marginBottom: 24, width:'100%',height:150 }}>
       {/* 本周预约数 */}
       <Col span={8}>
-        <Card   className="dashboard-card" style={{width:250,height:150}}>
+        <Card    style={{width:250,height:150}}>
           <Statistic
             title="本周预约数"
             value={stats.weeklyBookings}
@@ -44,7 +44,7 @@ useEffect(() => {
       
       {/* 今日剩余时长 */}
       <Col span={8}>
-        <Card   className="dashboard-card" style={{width:250,height:150}}>
+        <Card    style={{width:250,height:150}}>
           <Statistic
             title="今日剩余时长"
             value={stats.todayRemainingHours}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Table } from 'antd';
+import {  Table } from 'antd';
 
 interface BookingHistory {
   key: string;
@@ -44,14 +44,17 @@ const History: React.FC = () => {
   ];
 
   return (
-    <div style={{ padding: '24px' ,width:1000,height:500 }}>
-      <Card title="预约历史记录" bordered={false} style={{width:1000,height:500}}>
+    <div className="h-full flex flex-col">
+      <h2 className="text-xl font-bold mb-4">预约历史记录</h2>
+      <div className="flex-1">
         <Table 
           columns={columns} 
           dataSource={historyData} 
           rowKey="key"
+          pagination={{ pageSize: 10 }}
+          style={{ width: '100%', height: '100%' }}
         />
-      </Card>
+      </div>
     </div>
   );
 };

@@ -1,55 +1,37 @@
 import React from 'react';
-import { Alert,  Typography } from 'antd';
-import Card from 'antd/es/card/Card';
-import { ClockCircleOutlined, HourglassOutlined, CalendarOutlined,ExclamationCircleOutlined } from '@ant-design/icons';
+import {  ExclamationCircleOutlined } from '@ant-design/icons';
 
-const { Title } = Typography;
 
 //顶部提示
 export const InfoNotice: React.FC = () => {
   return (
-    <Card className="info-card" style={{ marginBottom: 24 ,width:1000,height:300}}>
-      <Title level={4} style={{ marginTop: 0, marginBottom: 16 }}>
-        活动室使用规范
-      </Title>
-      
-      <div style={{ display: 'grid', gap: 15, gridTemplateColumns: 'repeat(3, 1fr)' }}>
-        {/* 开放时间 */}
-        <div className="info-item" style={{width:250,height:50}}>
-          <ClockCircleOutlined style={{ color: '#1890ff', fontSize: 20 }} />
-          <div>
-            <div style={{ fontWeight: 'bold', color: '#333' }}>开放时间</div>
-            <div style={{ color: '#666' }}>每日 8:00 - 22:00</div>
+    <div style={{ width: '100%' }}>
+  
+      <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div style={{ flex: 1, marginRight: '24px' }}>
+            <div style={{ fontSize: 30, fontWeight: 'bold', marginBottom: '8px' }}>欢迎来到 430 活动室</div>
+            <div style={{ color: '#666', marginBottom: '12px' }}>这是 SACC 社团的活动室，请保持整洁有序，开启技术创作之路。</div>
+            <div style={{ display: 'flex', gap: '16px', fontSize: 14, color: '#999' }}>
+              <span>开放时长： 8:00 - 22:00</span>
+              <span>场地： 430 room</span>
+            </div>
           </div>
-        </div>
-        
-        {/* 时长限制 */}
-        <div className="info-item" style={{width:250,height:50}}>
-          <HourglassOutlined style={{ color: '#52c41a', fontSize: 20 }} />
-          <div>
-            <div style={{ fontWeight: 'bold', color: '#333' }}>预约时长</div>
-            <div style={{ color: '#666' }}>每次 1-4 小时</div>
-          </div>
-        </div>
-        
-        {/* 提前预约 */}
-        <div className="info-item" style={{width:250,height:50}}>
-          <CalendarOutlined style={{ color: '#fa8c16', fontSize: 20 }} />
-          <div>
-            <div style={{ fontWeight: 'bold', color: '#333' }}>提前预约</div>
-            <div style={{ color: '#666' }}>需提前 1-7 天预约</div>
+          
+          <div style={{ backgroundColor: '#fff5e5ff', padding: '16px', borderRadius: '8px', width: '300px' }}>
+            <div style={{ fontWeight: 'bold', color: '#333', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <ExclamationCircleOutlined style={{ color: '#fa8c16' }} />
+              注意事项
+            </div>
+            <ul style={{ margin: 0, paddingLeft: '20px', color: '#666' }}>
+              <li style={{ marginBottom: '4px' }}>开放时间：8:00-22:00（日）</li>
+              <li style={{ marginBottom: '4px' }}>请爱护公物，保持环境卫生</li>
+              <li style={{ marginBottom: '4px' }}>活动结束后请关闭所有门窗</li>
+              <li>如有特殊需求请联系管理员</li>
+            </ul>
           </div>
         </div>
       </div>
-      
-      <Alert
-        message="温馨提示"
-        description="活动结束后请保持室内整洁，带走个人物品"
-        type="warning"
-        showIcon
-        icon={<ExclamationCircleOutlined />}
-        style={{ marginTop: 20 }}
-      />
-    </Card>
+    </div>
   );
 };

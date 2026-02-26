@@ -1,21 +1,35 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from 'react';
 import { MainLayout } from "../pages/Layout";
-import { Booking } from "../pages/booking/Booking";
-import { History } from "../pages/history/History";
-import HomePage from "../pages/home";
+import { NotFound } from "../pages/NotFound";
+import { Spin } from 'antd';
+
+const HomePage = lazy(() => import('../pages/home'));
+const Booking = lazy(() => import('../pages/booking/Booking').then(module => ({ default: module.Booking })));
+const History = lazy(() => import('../pages/history/History').then(module => ({ default: module.History })));
+
+const loadingElement = (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <Spin size="large" />
+  </div>
+);
 
 const routes = [
     {
         path: '/',
-        element: <MainLayout><HomePage /></MainLayout>,
+        element: <MainLayout><Suspense fallback={loadingElement}><HomePage /></Suspense></MainLayout>,
     },
     {
         path: '/booking',
-        element: <MainLayout><Booking /></MainLayout>,
+        element: <MainLayout><Suspense fallback={loadingElement}><Booking /></Suspense></MainLayout>,
     },
     {
         path: '/history',
-        element: <MainLayout><History /></MainLayout>,
+        element: <MainLayout><Suspense fallback={loadingElement}><History /></Suspense></MainLayout>,
+    },
+    {
+        path: '*',
+        element: <NotFound />,
     },
 
 ];

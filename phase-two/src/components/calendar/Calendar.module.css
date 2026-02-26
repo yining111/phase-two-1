@@ -1,9 +1,11 @@
 /* 日历容器 */
 .calendar {
   background: white;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 8px;
+  padding: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  width: 320px;
+  height: 280px;
 }
 
 /* 头部导航 */
@@ -11,12 +13,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .monthTitle {
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   color: #333;
 }
 
@@ -24,13 +26,13 @@
 .weekDays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  margin-bottom: 8px;
+  gap: 2px;
+  margin-bottom: 6px;
 }
 
 .weekDay {
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   color: #999;
   font-weight: 500;
 }
@@ -39,7 +41,7 @@
 .daysGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  gap: 2px;
 }
 
 /* 日期单元格 */
@@ -49,11 +51,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
   position: relative;
-  min-height: 40px;
+  min-height: 32px;
 }
 
 .dayCell:hover {
@@ -91,17 +93,17 @@
 /* 圆点指示器 */
 .dots {
   display: flex;
-  gap: 2px;
-  margin-top: 2px;
+  gap: 1px;
+  margin-top: 1px;
   align-items: center;
 }
 
 .dot {
-  transform: scale(0.8);
+  transform: scale(0.6);
 }
 
 .more {
-  font-size: 10px;
+  font-size: 8px;
   color: inherit;
   opacity: 0.8;
 }

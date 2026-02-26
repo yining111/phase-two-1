@@ -19,23 +19,35 @@ const Booking: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const addBooking = useBookingStore(state => state.addBooking);
+  const isTimeSlotAvailable = useBookingStore(state => state.isTimeSlotAvailable);
 
   //提交
   const handleSubmit = async (values: BookingFormValues) => {
     setLoading(true);
     try {
+      // 检查时间槽是否可用
+      const date = values.date.format('YYYY-MM-DD');
+      const startTime = values.startTime.format('HH:mm');
+      const endTime = values.endTime.format('HH:mm');
+      
+      if (!isTimeSlotAvailable(date, startTime, endTime)) {
+        message.error('该时间段已被占用，请选择其他时间');
+        setLoading(false);
+        return;
+      }
+      
       // 提交
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // store
       addBooking({
-        date: values.date.format('YYYY-MM-DD'),
-        startTime: values.startTime.format('HH:mm'),
-        endTime: values.endTime.format('HH:mm'),
+        date: date,
+        startTime: startTime,
+        endTime: endTime,
         theme: values.theme,
         applicant: values.name,
         team: values.team,
-        participants: values.participants,
+        participants: Number(values.participants),
         status: 'upcoming',
       });
       
@@ -56,8 +68,8 @@ const Booking: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', width: 1000, height: 1000 }}>
-      <Card title="活动室预约" bordered={false} style={{ maxWidth: 800, margin: '0 auto' }}>
+    <div className="w-full min-h-screen flex items-center justify-center p-4 bg-gray-50">
+      <Card title="活动室预约" bordered={false} style={{maxWidth: 800, width: '100%', margin: '0 auto' }}>
         <Form form={form}  layout="vertical" onFinish={handleSubmit}
           initialValues={{
             date: dayjs(),
@@ -65,7 +77,7 @@ const Booking: React.FC = () => {
             endTime: dayjs('10:00', 'HH:mm'),
             room: '430活动室',
           }}>
-  
+
           <Form.Item name="date" label="预约日期"
             rules={[{ required: true, message: '请选择预约日期' }]}>
             <DatePicker style={{ width: '100%' }}
@@ -74,20 +86,54 @@ const Booking: React.FC = () => {
           </Form.Item>
 
           
-          <div style={{ display: 'flex', gap: 12 }}>
+          <div className="flex gap-4 items-center justify-center ">
             <Form.Item
-              name="startTime" label="开始时间"
+              name="startTime" 
+              label="开始时间"
               rules={[{ required: true, message: '请选择开始时间' }]}
-              style={{ flex: 1 }}>
+              style={{ flex: 1 }}
+            >
               <TimePicker style={{ width: '100%' }} format="HH:mm" />
             </Form.Item>
             <Form.Item
-              name="endTime" label="结束时间"
-              rules={[{ required: true, message: '请选择结束时间' }]}
-              style={{ flex: 1 }}>
-              <TimePicker style={{ width: '100%' }} format="HH:mm" />
+              name="endTime" 
+              label="结束时间"
+              rules={[
+                { required: true, message: '请选择结束时间' },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    const startTime = getFieldValue('startTime');
+                    if (!startTime || !value || value.isAfter(startTime)) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('结束时间不能早于开始时间'));
+                  },
+                }),
+              ]}
+              style={{ flex: 1 }}
+            >
+              <TimePicker 
+                style={{ width: '100%' }} 
+                format="HH:mm" 
+                disabledHours={(selectedHour) => {
+                  const startTime = form.getFieldValue('startTime');
+                  if (!startTime) return [];
+                  const startHour = startTime.hour();
+                  return Array.from({ length: startHour }, (_, i) => i);
+                }}
+                disabledMinutes={(selectedHour, selectedMinute) => {
+                  const startTime = form.getFieldValue('startTime');
+                  if (!startTime) return [];
+                  const startHour = startTime.hour();
+                  const startMinute = startTime.minute();
+                  if (selectedHour === startHour) {
+                    return Array.from({ length: startMinute }, (_, i) => i);
+                  }
+                  return [];
+                }}
+              />
             </Form.Item>
-          </div> 
+          </div>
 
           
           <Form.Item
@@ -99,7 +145,7 @@ const Booking: React.FC = () => {
           </Form.Item>
 
           {/* 预约人信息 */}
-          <div style={{ display: 'flex', gap: 12 }}>
+          <div className="flex justify-between items-center gap-4">
             <Form.Item
               name="name"
               label="预约人姓名"
